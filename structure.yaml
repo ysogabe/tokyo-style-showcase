@@ -1,0 +1,96 @@
+src:
+  structure.yaml:
+    content: |-
+      Veo2を使用して生成された3つの異なる「東京の夜明け」の動画を、カード形式で表示するプロジェクト。
+      - シックでおしゃれな色合い（白っぽい背景に赤と金をポイントで使用）。
+      - 各動画は自動再生、ループ再生。
+      - 各動画の下に簡単な説明文（動画のスタイルとプロンプトを簡潔に記載）。
+      - 動画は常に横に3つ並べて表示（レスポンシブ対応なし）。
+      - カード形式で表示し、各カードには丸みを帯びた角と影を付ける。
+      - タイトルの上部には広めの空間を設ける。
+      - カラーコードを使用してスタイリング。
+
+      参照グリモワール:
+      - Veo2 走っている猫ギャラリー表示: 走っている猫の動画生成とギャラリー表示の基本構造を提供するため。（動画の内容は変更されたが、基本構造は同じ）
+      - 都会的でモダンなテイストの画像ギャラリー: デザインの参考にするため（ただし、今回は白ベースに赤と金をアクセントにしたデザイン）。
+
+      エージェント選定理由: claude-3-5-sonnet-20241022は、フロントエンドコンポーネントの設計と関連する説明テキストの生成に優れています。
+      API選定理由: 外部APIは使用せず、選択したエージェントの内部機能に依存します。
+    dependency:
+      - src/components/VideoGallery.tsx
+    agent: "claude-3-5-sonnet-20241022"
+    api: []
+
+  videos:
+    tokyo_dawn_1.mp4:
+      content: |-
+        - Style: Makoto Shinkai style
+        - Prompt: "A time-lapse of the Tokyo skyline at dawn, animated in the style of Makoto Shinkai. Vibrant colors, detailed cityscapes, and dramatic lighting as the sun rises over the skyscrapers. Lens flares and subtle light reflections, 4K resolution."
+      dependency: []
+      agent: "fal-ai-veo2-t2v"
+      api: []
+
+    tokyo_dawn_2.mp4:
+      content: |-
+        - Style: Akira Kurosawa style
+        - Prompt: "Dawn breaks over Tokyo in the style of Akira Kurosawa. High-contrast black and white cinematography, with dramatic shadows and a focus on the interplay of light and darkness. Silhouettes of buildings against the rising sun, capturing a sense of epic scale and historical drama."
+      dependency: []
+      agent: "fal-ai-veo2-t2v"
+      api: []
+
+    tokyo_dawn_3.mp4:
+      content: |-
+        - Style: Studio Ghibli style
+        - Prompt: "A whimsical depiction of dawn in Tokyo, animated in the style of Studio Ghibli. Hand-drawn aesthetic, soft colors, and a magical atmosphere. Gentle light spreading across the city, with fantastical elements like floating lanterns and friendly spirits welcoming the new day."
+      dependency: []
+      agent: "fal-ai-veo2-t2v"
+      api: []
+
+  components:
+    VideoGallery.tsx:
+      content: |-
+        Veo2で生成された動画をカード形式で表示するコンポーネント。
+        - 各動画をカード内に表示。
+        - 自動再生、ループ再生を有効化。
+        - 各動画の下に簡単な説明文（スタイルとプロンプト）を表示。
+        - シックでおしゃれな色合い（白っぽい背景、赤と金をポイントで使用）。
+        - Tailwind CSSを使用。
+        - レスポンシブ対応はせず、常に横に3つ並べて表示。
+        - カードには丸みを帯びた角と影を付ける。
+        - タイトルの上部には広めの空間を設ける。
+
+        スタイリング:
+          - 背景色: #f5f5f5 (オフホワイト)
+          - テキストカラー: #333333 (ダークグレー)
+          - アクセントカラー1: #cc0000 (赤)
+          - アクセントカラー2: #ffd700 (金)
+          - カード:
+            - bg-white (白)
+            - rounded-lg (角丸)
+            - shadow-md (影)
+            - overflow-hidden (はみ出し部分を非表示)
+          - 動画コンテナ:
+            - display: flex
+            - justify-content: space-between
+            - width: 100%
+            - p-4 (パディング)
+          - 各動画アイテム:
+            - width: 32%
+            - margin: 0
+          - タイトル:
+            - mt-16 (上部マージン)
+            - text-2xl (フォントサイズ)
+            - font-bold (太字)
+            - text-center (中央揃え)
+            - text-red-700 (濃い赤色のテキスト)
+          - 説明文:
+            - text-sm (小さめのフォント)
+            - text-gray-600 (グレーのテキスト)
+            - mt-2 (上部マージン)
+
+      dependency:
+        - src/videos/tokyo_dawn_1.mp4
+        - src/videos/tokyo_dawn_2.mp4
+        - src/videos/tokyo_dawn_3.mp4
+      agent: "claude-3-5-sonnet-20241022"
+      api: []
