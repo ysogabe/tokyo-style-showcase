@@ -1,4 +1,4 @@
-# Tokyo Dawn Video Dashboard
+# Tokyo Dawn Gallery
 
 3つの異なるスタイルで生成された「東京の夜明け」動画を表示するダッシュボード。
 
